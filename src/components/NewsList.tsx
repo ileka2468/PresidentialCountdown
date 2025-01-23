@@ -6,7 +6,7 @@ interface NewsArticle {
   link: string;
   source: string;
   pubDate: string;
-} // swapped to my news api
+}
 
 interface NewsListProps {
   mode: string; // "republican" or "democratic"
@@ -41,8 +41,8 @@ const NewsList: React.FC<NewsListProps> = ({ mode }) => {
   };
 
   return (
-    <div className="mt-12 text-white w-full max-w-4xl">
-      <h2 className="text-3xl font-bold mb-4">Latest News</h2>
+    <div className="mt-12 text-white w-full max-w-4xl mx-auto px-4">
+      <h2 className="text-3xl font-bold mb-4 text-center">Latest News</h2>
       <ul className="space-y-4">
         {news.slice(0, showMore ? news.length : 5).map((article, index) => (
           <li

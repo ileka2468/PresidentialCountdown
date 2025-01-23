@@ -35,7 +35,7 @@ const Countdown: React.FC = () => {
   const milestones = [
     { name: "Inauguration Day", date: new Date("2025-01-20") },
     { name: "First 100 Days", date: new Date("2025-04-30") },
-    { name: "First State of the Union Address", date: new Date("2025-02-05") },
+    { name: "State of the Union Address", date: new Date("2025-02-05") },
     {
       name: "First Annual Joint Session of Congress",
       date: new Date("2025-09-30"),
@@ -112,16 +112,16 @@ const Countdown: React.FC = () => {
     <div
       className={`min-h-screen flex flex-col items-center justify-center ${
         mode === "republican" ? "bg-red-500" : "bg-blue-500"
-      } p-10`}
+      } p-4 sm:p-10`}
     >
-      <h1 className="text-5xl font-extrabold mb-6 text-white">
+      <h1 className="text-5xl font-extrabold mb-6 text-white text-center">
         Countdown to Next President
       </h1>
-      <div className="text-3xl text-white mb-4">
+      <div className="text-3xl text-white mb-4 text-center">
         {timerComponents.length ? timerComponents : <span>Time's up!</span>}
       </div>
-      <div className="text-xl text-white mb-6">{message}</div>
-      <div className="w-full max-w-4xl bg-gray-200 rounded-full h-12 mt-4 overflow-hidden relative shadow-lg">
+      <div className="text-xl text-white mb-6 text-center">{message}</div>
+      <div className="w-full max-w-4xl bg-gray-200 rounded-full h-12 mt-4 overflow-hidden relative shadow-lg mx-4">
         <div
           className="bg-green-500 h-12 rounded-full"
           style={{ width: `${percentage}%` }}
@@ -133,7 +133,7 @@ const Countdown: React.FC = () => {
         </div>
         {showMilestones && milestoneMarkers}
       </div>
-      <div className="flex space-x-4 mt-6">
+      <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
         <button
           onClick={() =>
             setMode(mode === "republican" ? "democrat" : "republican")
@@ -150,7 +150,7 @@ const Countdown: React.FC = () => {
         </button>
       </div>
       <div className="mt-12 flex flex-col items-center">
-        <div className="flex space-x-8">
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-8 items-center">
           <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-lg">
             <img
               src="/trump.png"
@@ -166,7 +166,7 @@ const Countdown: React.FC = () => {
             />
           </div>
         </div>
-        <div className="flex space-x-8 mt-4">
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-8 mt-4 items-center">
           <span className="text-2xl text-white font-bold">
             Current President
           </span>

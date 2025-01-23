@@ -77,10 +77,12 @@ const Poll: React.FC = () => {
   const percentageB = ((poll.votes_b / totalVotes) * 100).toFixed(2);
 
   return (
-    <div className="mt-12 text-white w-full max-w-4xl">
-      <h2 className="text-4xl font-bold mb-6">Poll of the Day</h2>
-      <p className="text-2xl mb-6 font-semibold italic">{poll.question}</p>
-      <div className="flex space-x-4 mb-6">
+    <div className="mt-12 text-white w-full max-w-4xl mx-auto px-4">
+      <h2 className="text-4xl font-bold mb-6 text-center">Poll of the Day</h2>
+      <p className="text-2xl mb-6 font-semibold italic text-center">
+        {poll.question}
+      </p>
+      <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-6">
         <button
           onClick={() => handleVote("a")}
           disabled={hasVoted}
@@ -97,7 +99,7 @@ const Poll: React.FC = () => {
           disabled={hasVoted}
           className={`px-8 py-4 rounded-lg shadow-lg transition ${
             selectedOption === "b"
-              ? "bg-blue-800 text-white"
+              ? "bg-blue-500 text-white"
               : "bg-white text-black"
           }`}
         >
@@ -106,7 +108,7 @@ const Poll: React.FC = () => {
       </div>
       {hasVoted && (
         <div className="mt-4">
-          <p className="text-2xl font-bold mb-4">Results:</p>
+          <p className="text-2xl font-bold mb-4 text-center">Results:</p>
           <div className="mb-6">
             <div className="w-full bg-gray-200 rounded-full h-10 relative">
               <div
@@ -122,7 +124,7 @@ const Poll: React.FC = () => {
           <div className="mb-6">
             <div className="w-full bg-gray-200 rounded-full h-10 relative">
               <div
-                className="bg-blue-800 h-10 rounded-full flex items-center justify-center"
+                className="bg-blue-500 h-10 rounded-full flex items-center justify-center"
                 style={{ width: `${percentageB}%` }}
               >
                 <span className="text-white font-bold">
@@ -131,7 +133,9 @@ const Poll: React.FC = () => {
               </div>
             </div>
           </div>
-          <p className="text-lg font-semibold">Total Votes: {totalVotes}</p>
+          <p className="text-lg font-semibold text-center">
+            Total Votes: {totalVotes}
+          </p>
         </div>
       )}
     </div>
