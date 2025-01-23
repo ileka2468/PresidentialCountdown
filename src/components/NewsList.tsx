@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-const APP_NEWS_API_KEY = "dcce4bb3157b4d3ea6db57f086ba96b4";
-
 interface NewsArticle {
   title: string;
   description: string;
-  url: string;
-  source: { name: string };
-  publishedAt: string;
-}
+  link: string;
+  source: string;
+  pubDate: string;
+} // swapped to my news api
 
 interface NewsListProps {
-  mode: string;
+  mode: string; // "republican" or "democratic"
 }
 
 const NewsList: React.FC<NewsListProps> = ({ mode }) => {
@@ -24,21 +22,21 @@ const NewsList: React.FC<NewsListProps> = ({ mode }) => {
 
   const fetchNews = async () => {
     try {
-      const query =
-        mode === "republican"
-          ? "Republican Donald Trump News"
-          : "Democrat Donald Trump News";
-      const fromDate = new Date();
-      fromDate.setMonth(fromDate.getMonth() - 1);
-      const response = await fetch(
-        `https://newsapi.org/v2/everything?q=${encodeURIComponent(
-          query
-        )}&from=${fromDate.toISOString()}&sortBy=publishedAt&apiKey=${APP_NEWS_API_KEY}`
-      );
+      // Determine bias based on mode
+      const bias = mode === "republican" ? "right" : "left";
+
+      const response = await fetch(`/api/news/bias?bias=${bias}`);
       const data = await response.json();
-      setNews(data.articles);
+
+      if (data.status === "success") {
+        setNews(data.data);
+      } else {
+        console.error("Error fetching news:", data);
+        setNews([]);
+      }
     } catch (error) {
       console.error("Error fetching news:", error);
+      setNews([]);
     }
   };
 
@@ -52,7 +50,7 @@ const NewsList: React.FC<NewsListProps> = ({ mode }) => {
             className="bg-white text-black p-4 rounded-lg shadow-lg"
           >
             <a
-              href={article.url}
+              href={article.link}
               target="_blank"
               rel="noopener noreferrer"
               className="text-lg font-bold hover:underline"
@@ -60,8 +58,8 @@ const NewsList: React.FC<NewsListProps> = ({ mode }) => {
               {article.title}
             </a>
             <p className="text-sm text-gray-600">
-              {article.source.name} -{" "}
-              {new Date(article.publishedAt).toLocaleDateString()}
+              {article.source} -{" "}
+              {new Date(article.pubDate).toLocaleDateString()}
             </p>
             <p className="mt-2">{article.description}</p>
           </li>
