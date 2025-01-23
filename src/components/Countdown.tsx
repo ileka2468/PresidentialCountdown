@@ -110,8 +110,8 @@ const Countdown: React.FC = () => {
 
   const message =
     mode === "republican"
-      ? `President Trump has ${timeLeft.days} days left to make America great again!`
-      : `${timeLeft.days} days left for Donny to stop "trumping" the country!`;
+      ? `President Trump has ${timeLeft.days} days left in office!`
+      : `President Trump has ${timeLeft.days} days left in office...`;
 
   return (
     <div
