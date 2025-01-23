@@ -78,15 +78,20 @@ const Poll: React.FC = () => {
 
   return (
     <div className="mt-12 text-white w-full max-w-4xl mx-auto px-4">
-      <h2 className="text-4xl font-bold mb-6 text-center">Poll of the Day</h2>
-      <p className="text-2xl mb-6 font-semibold italic text-center">
+      {/* Title */}
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-center">
+        Poll of the Day
+      </h2>
+      {/* Question */}
+      <p className="text-lg sm:text-xl md:text-2xl mb-6 font-semibold italic text-center">
         {poll.question}
       </p>
+      {/* Options */}
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-6">
         <button
           onClick={() => handleVote("a")}
           disabled={hasVoted}
-          className={`px-8 py-4 rounded-lg shadow-lg transition ${
+          className={`px-6 py-3 sm:px-8 sm:py-4 rounded-lg shadow-lg transition ${
             selectedOption === "a"
               ? "bg-green-500 text-white"
               : "bg-white text-black"
@@ -97,7 +102,7 @@ const Poll: React.FC = () => {
         <button
           onClick={() => handleVote("b")}
           disabled={hasVoted}
-          className={`px-8 py-4 rounded-lg shadow-lg transition ${
+          className={`px-6 py-3 sm:px-8 sm:py-4 rounded-lg shadow-lg transition ${
             selectedOption === "b"
               ? "bg-blue-500 text-white"
               : "bg-white text-black"
@@ -106,34 +111,37 @@ const Poll: React.FC = () => {
           {poll.option_b}
         </button>
       </div>
+      {/* Results */}
       {hasVoted && (
         <div className="mt-4">
-          <p className="text-2xl font-bold mb-4 text-center">Results:</p>
+          <p className="text-lg sm:text-2xl font-bold mb-4 text-center">
+            Results:
+          </p>
           <div className="mb-6">
-            <div className="w-full bg-gray-200 rounded-full h-10 relative">
+            <div className="w-full bg-gray-200 rounded-full h-6 sm:h-8 md:h-10 relative">
               <div
-                className="bg-green-500 h-10 rounded-full flex items-center justify-center"
+                className="bg-green-500 h-6 sm:h-8 md:h-10 rounded-full flex items-center justify-center"
                 style={{ width: `${percentageA}%` }}
               >
-                <span className="text-white font-bold">
+                <span className="text-sm sm:text-base md:text-lg font-bold text-white">
                   {percentageA}% ({poll.votes_a} votes)
                 </span>
               </div>
             </div>
           </div>
           <div className="mb-6">
-            <div className="w-full bg-gray-200 rounded-full h-10 relative">
+            <div className="w-full bg-gray-200 rounded-full h-6 sm:h-8 md:h-10 relative">
               <div
-                className="bg-blue-500 h-10 rounded-full flex items-center justify-center"
+                className="bg-blue-500 h-6 sm:h-8 md:h-10 rounded-full flex items-center justify-center"
                 style={{ width: `${percentageB}%` }}
               >
-                <span className="text-white font-bold">
+                <span className="text-sm sm:text-base md:text-lg font-bold text-white">
                   {percentageB}% ({poll.votes_b} votes)
                 </span>
               </div>
             </div>
           </div>
-          <p className="text-lg font-semibold text-center">
+          <p className="text-sm sm:text-lg font-semibold text-center">
             Total Votes: {totalVotes}
           </p>
         </div>
