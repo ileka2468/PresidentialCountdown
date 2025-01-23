@@ -25,9 +25,7 @@ const NewsList: React.FC<NewsListProps> = ({ mode }) => {
       // Determine bias based on mode
       const bias = mode === "republican" ? "right" : "left";
 
-      const response = await fetch(
-        `http://localhost:3010/api/news/bias?bias=${bias}`
-      );
+      const response = await fetch(`/api/news/bias?bias=${bias}`);
 
       const data = await response.json();
 
